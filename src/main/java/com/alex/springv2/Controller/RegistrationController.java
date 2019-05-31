@@ -42,6 +42,7 @@ public class RegistrationController {
         return "test";
     }
 
+
     /*@GetMapping
     public String login() {
         return "login";
