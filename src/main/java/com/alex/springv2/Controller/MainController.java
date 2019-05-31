@@ -1,6 +1,7 @@
 package com.alex.springv2.Controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -8,22 +9,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MainController {
 
 
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    @GetMapping(value = "/admin")
     public String adminHome() {
         return "admin";
     }
 
-    @RequestMapping(value = "/user")
+    @GetMapping(value = "/user")
     public String userHome() {
         return "user";
     }
 
-    @RequestMapping(value = "/hello")
+    @GetMapping(value = "/hello")
     public String hello() {
         return "hello";
     }
 
-    @RequestMapping(value = {"/", "/home"})
+    @GetMapping(value = {"/", "/home"})
     public String startPage() {
         return "home";
     }
