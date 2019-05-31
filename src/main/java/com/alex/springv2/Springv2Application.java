@@ -1,0 +1,14 @@
+package com.alex.springv2;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Controller;
+
+@SpringBootApplication
+public class Springv2Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Springv2Application.class, args);
+    }
+
+}
