@@ -3,13 +3,13 @@ package com.alex.springv2.Controller;
 
 import com.alex.springv2.domain.Role;
 import com.alex.springv2.domain.User;
-import com.alex.springv2.repositories.UserRepository;
 import com.alex.springv2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Collections;
 import java.util.Map;
@@ -39,10 +39,7 @@ public class RegistrationController {
         return "redirect:/login";
     }
 
-    /*@RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String adminHome() {
-        return "admin";
-    }*/
+
 
     @RequestMapping("/test")
     public String test() {
