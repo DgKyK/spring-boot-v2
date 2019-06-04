@@ -2,7 +2,8 @@ package com.alex.springv2.Controller;
 
 
 import com.alex.springv2.domain.Role;
-import com.alex.springv2.domain.User;
+import com.alex.springv2.domain.Entity.User;
+import com.alex.springv2.service.RegistrationService;
 import com.alex.springv2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,9 +16,12 @@ import java.util.Map;
 
 @Controller
 public class RegistrationController {
+
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RegistrationService registrationService;
 
     @GetMapping("/registration")
     public String registration() {
@@ -33,17 +37,10 @@ public class RegistrationController {
             return "registration";
         }
 
-        user.setAccountStatus(true);
-        user.setRoles(Collections.singleton(Role.USER));
+        registrationService.addNewUser(user);
         userService.save(user);
+
         return "redirect:/login";
-    }
-
-
-
-    @RequestMapping("/test")
-    public String test() {
-        return "test";
     }
 }
 /*
