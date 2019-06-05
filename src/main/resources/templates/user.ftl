@@ -7,7 +7,6 @@
     <div >
         <Strong>Choose the Test from catalog : </Strong>
     </div>
-    <div>/hello</div>
     <form action="/user/test" method="post" name="test">
     <div>
         <select class="custom-select col-sm-5 mt-2" name="chosenTest">

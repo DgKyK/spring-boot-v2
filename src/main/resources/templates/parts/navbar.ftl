@@ -15,12 +15,12 @@
             </#if>
             <#if isUser>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">My Statistic<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/user/mystatistic">My Statistic<span class="sr-only">(current)</span></a>
                 </li>
             </#if>
             <#if isAdmin>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Users Statistic<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/admin/dmin_statistic">Users Statistic<span class="sr-only">(current)</span></a>
                 </li>
             </#if>
         </ul>
