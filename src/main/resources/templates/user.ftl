@@ -10,7 +10,7 @@
     <div>/hello</div>
     <form action="/user/test" method="post" name="test">
     <div>
-        <select class="custom-select col-sm-5 mt-2" name="test">
+        <select class="custom-select col-sm-5 mt-2" name="chosenTest">
             <#list tests as test>
                 <option>
                 <div>

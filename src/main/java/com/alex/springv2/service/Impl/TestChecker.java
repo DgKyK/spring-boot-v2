@@ -4,15 +4,12 @@ import com.alex.springv2.domain.Answer;
 import com.alex.springv2.domain.Entity.Question;
 import com.alex.springv2.domain.Role;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class TestChecker {
 
     public static Map<String, Boolean> getTestReview(List<Question> questions, Map<Integer, Answer> passedTest) {
-        Map<String, Boolean> checkedTest = new TreeMap<>();
+        Map<String, Boolean> checkedTest = new LinkedHashMap<>();
         for(Integer currentQuest : passedTest.keySet()) {
             Answer rightAnswer = questions.get(currentQuest - 1).getAnswer();
             Answer givenAnswer = passedTest.get(currentQuest);
