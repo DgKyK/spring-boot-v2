@@ -14,6 +14,6 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Override
     public void addNewUser(User user) {
         user.setAccountStatus(true);
-        user.setRoles(Collections.singleton(Role.ADMIN));
+        user.setRole(Role.USER);
     }
 }

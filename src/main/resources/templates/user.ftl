@@ -1,20 +1,23 @@
 <#import "parts/common.ftl" as c>
-<#import "parts/login.ftl" as l>
+    <#include "parts/security.ftl">
 <@c.page>
-    <h2> Hello user !!!</h2>
     <div>
-        <@l.logout/>
+        <h2> Hello ${name} !!!</h2>
     </div>
-    <div>
-        <Strong>Choose theme : </Strong>
+    <div >
+        <Strong>Choose the Test from catalog : </Strong>
     </div>
+    <div>/hello</div>
+    <form action="/user/test" method="post" name="test">
     <div>
-        <select>
+        <select class="custom-select col-sm-5 mt-2" name="test">
             <#list tests as test>
                 <option>
                 <div>
-                    <#--<b>${test.id}</b>
-                    <span>${test.name}</span>-->
+                    <b>${test.id}</b>
+                    <strong>|</strong>
+                    <span>${test.name}</span>
+                    <strong>|</strong>
                     <i>${test.theme}</i>
                 </div>
             <#else>
@@ -23,20 +26,7 @@
             </#list>
         </select>
     </div>
-    <div>
-        <select>
-            <#list tests as test>
-                <option>
-                <div>
-                    <#--<b>${test.id}</b>
-                    <span>${test.name}</span>-->
-                    <i>${test.name}</i>
-                </div>
-            <#else>
-                <strong>NO TESTS</strong>
-                </option>
-            </#list>
-        </select>
-    </div>
-
+        <input type="hidden" name="_csrf" value="${_csrf.token}" />
+        <button type="submit" class="btn btn-primary">Pass Test</button>
+    </form>
 </@c.page>

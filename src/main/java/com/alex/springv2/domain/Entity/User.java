@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.Set;
+import java.util.Collections;
 
 @Entity
 @Table(name = "users")
@@ -18,17 +18,17 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    private Long id;
+    private long id;
 
     private String username;
     private String password;
     private String email;
     private boolean accountStatus;
 
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    /*@ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))*/
     @Enumerated(EnumType.STRING)
-    private Set<Role> roles;
+    private Role role;
 
     @Override
     public boolean isAccountNonExpired() {
@@ -52,7 +52,15 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
+        return Collections.singleton(getRole());
+    }
+
+    public boolean isAdmin() {
+        return role == Role.ADMIN;
+    }
+
+    public boolean isUser() {
+        return role == Role.USER;
     }
 
     public Long getId() {
@@ -87,12 +95,12 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
 
