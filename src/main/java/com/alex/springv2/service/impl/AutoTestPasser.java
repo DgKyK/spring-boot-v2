@@ -1,4 +1,4 @@
-package com.alex.springv2.service.Impl;
+package com.alex.springv2.service.impl;
 
 import com.alex.springv2.domain.Answer;
 

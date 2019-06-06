@@ -26,6 +26,6 @@
         </select>
     </div>
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
-        <button type="submit" class="btn btn-primary">Pass Test</button>
+        <button type="submit" class="btn btn-primary mt-2">Pass Test</button>
     </form>
 </@c.page>

@@ -1,7 +1,7 @@
 package com.alex.springv2.service;
 
 
-import com.alex.springv2.domain.Entity.User;
+import com.alex.springv2.domain.entity.User;
 
 import java.util.List;
 

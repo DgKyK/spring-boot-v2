@@ -1,6 +1,6 @@
-package com.alex.springv2.repositories.Impl;
+package com.alex.springv2.repositories.impl;
 
-import com.alex.springv2.domain.Entity.Question;
+import com.alex.springv2.domain.entity.Question;
 import com.alex.springv2.repositories.QuestionRepositoryCustom;
 
 import javax.persistence.EntityManager;

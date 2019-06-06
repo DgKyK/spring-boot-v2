@@ -1,8 +1,8 @@
-package com.alex.springv2.service.Impl;
+package com.alex.springv2.service.impl;
 
-import com.alex.springv2.domain.Entity.StudentSuccess;
-import com.alex.springv2.domain.Entity.Test;
-import com.alex.springv2.domain.Entity.User;
+import com.alex.springv2.domain.entity.StudentSuccess;
+import com.alex.springv2.domain.entity.Test;
+import com.alex.springv2.domain.entity.User;
 import com.alex.springv2.domain.TestStatus;
 import com.alex.springv2.repositories.StudentSuccessRepository;
 import com.alex.springv2.repositories.TestRepository;
@@ -11,6 +11,7 @@ import com.alex.springv2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 @Service
 public class StudentSuccessServiceImpl implements StudentSuccessService {
@@ -47,5 +48,11 @@ public class StudentSuccessServiceImpl implements StudentSuccessService {
                 .status((writeAnswers < testFromBd.getNeedAnswerNumb()) ? TestStatus.Failed : TestStatus.Passed).build();
 
         studentSuccessRepository.save(currentResult);
+    }
+
+    @Override
+    public List<StudentSuccess> findAllByUserName(String userName) {
+        User currentUser = userService.findByUsername(userName);
+        return studentSuccessRepository.findAllByUserId(currentUser.getId());
     }
 }

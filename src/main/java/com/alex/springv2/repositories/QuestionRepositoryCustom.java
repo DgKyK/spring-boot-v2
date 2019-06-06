@@ -1,6 +1,6 @@
 package com.alex.springv2.repositories;
 
-import com.alex.springv2.domain.Entity.Question;
+import com.alex.springv2.domain.entity.Question;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.alex.springv2.domain.Entity;
+package com.alex.springv2.domain.entity;
 
 
 

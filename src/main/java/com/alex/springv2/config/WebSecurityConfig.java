@@ -1,6 +1,6 @@
 package com.alex.springv2.config;
 
-import com.alex.springv2.service.Impl.UserCheckService;
+import com.alex.springv2.service.impl.UserCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

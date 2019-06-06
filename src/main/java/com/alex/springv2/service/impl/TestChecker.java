@@ -1,8 +1,7 @@
-package com.alex.springv2.service.Impl;
+package com.alex.springv2.service.impl;
 
 import com.alex.springv2.domain.Answer;
-import com.alex.springv2.domain.Entity.Question;
-import com.alex.springv2.domain.Role;
+import com.alex.springv2.domain.entity.Question;
 
 import java.util.*;
 

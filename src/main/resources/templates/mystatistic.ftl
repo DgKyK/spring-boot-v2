@@ -3,31 +3,25 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Test name</th>
+            <th scope="col">Theme</th>
+            <th scope="col">Questions</th>
+            <th scope="col">Write</th>
+            <th scope="col">Wrong</th>
+            <th scope="col">Status</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-        </tr>
+        <#list successes as cc>
+            <tr>
+                <th scope="row">${cc.testName}</th>
+                <td>${cc.testTheme}</td>
+                <td>${cc.questNumber}</td>
+                <td>${cc.writeAnswer}</td>
+                <td>${cc.wrongAnswer}</td>
+                <td>${cc.status}</td>
+            </tr>
+        </#list>
         </tbody>
     </table>
 </@c.page>

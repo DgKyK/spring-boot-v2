@@ -1,10 +1,7 @@
 package com.alex.springv2.repositories;
 
-import com.alex.springv2.domain.Entity.Question;
-import com.alex.springv2.domain.Entity.Test;
+import com.alex.springv2.domain.entity.Test;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
 
 public interface TestRepository extends JpaRepository<Test, Long> {
 }

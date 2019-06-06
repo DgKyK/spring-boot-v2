@@ -1,7 +1,10 @@
-package com.alex.springv2.domain.Entity;
+package com.alex.springv2.domain.entity;
 
 import com.alex.springv2.domain.TestStatus;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -9,6 +12,8 @@ import javax.persistence.*;
 
 @Entity
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class StudentSuccess {
 
     @Id
@@ -28,6 +33,7 @@ public class StudentSuccess {
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
+
 
     public long getId() {
         return id;

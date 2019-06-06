@@ -1,10 +1,9 @@
 package com.alex.springv2.service;
 
-import com.alex.springv2.domain.Entity.Question;
-import com.alex.springv2.domain.Entity.Test;
+import com.alex.springv2.domain.entity.Question;
+import com.alex.springv2.domain.entity.Test;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface TestService {
     List<Test> getAll();

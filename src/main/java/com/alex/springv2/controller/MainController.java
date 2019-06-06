@@ -1,4 +1,4 @@
-package com.alex.springv2.Controller;
+package com.alex.springv2.controller;
 
 import com.alex.springv2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

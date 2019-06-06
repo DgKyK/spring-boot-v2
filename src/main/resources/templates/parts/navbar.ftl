@@ -20,7 +20,7 @@
             </#if>
             <#if isAdmin>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/admin/dmin_statistic">Users Statistic<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/admin/statistic">Users Statistic<span class="sr-only">(current)</span></a>
                 </li>
             </#if>
         </ul>

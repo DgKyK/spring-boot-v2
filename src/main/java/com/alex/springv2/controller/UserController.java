@@ -1,19 +1,19 @@
-package com.alex.springv2.Controller;
+package com.alex.springv2.controller;
 
 import com.alex.springv2.domain.Answer;
-import com.alex.springv2.domain.Entity.Question;
-import com.alex.springv2.domain.Entity.StudentSuccess;
-import com.alex.springv2.domain.Entity.Test;
-import com.alex.springv2.service.Impl.AutoTestPasser;
-import com.alex.springv2.service.Impl.TestChecker;
+import com.alex.springv2.domain.entity.Question;
+import com.alex.springv2.domain.entity.StudentSuccess;
+import com.alex.springv2.domain.entity.Test;
+import com.alex.springv2.service.impl.AutoTestPasser;
+import com.alex.springv2.service.impl.TestChecker;
 import com.alex.springv2.service.StudentSuccessService;
 import com.alex.springv2.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -39,19 +39,24 @@ public class UserController {
     }
 
     @RequestMapping("/test")
-    public String passTest(@RequestParam String chosenTest, Map<String, Boolean> resultTest) {
+    public String passTest(@RequestParam String chosenTest,  Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         List<Question> questList = testService.findAllByTestId(chosenTest);
         Map<Integer, Answer> passedTest = AutoTestPasser.getPassedTest(questList.size());
-        resultTest = TestChecker.getTestReview(questList,passedTest);
+        Map<String, Boolean> resultTest = TestChecker.getTestReview(questList,passedTest);
         studentSuccessService.saveCurrentResult(resultTest,chosenTest,userDetails.getUsername());
+        model.addAttribute("test", resultTest);
         System.out.println(resultTest);
         return "test";
     }
 
     @RequestMapping("/mystatistic")
-    public String statistic() {
+    public String statistic(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        List<StudentSuccess> successes = studentSuccessService.findAllByUserName(userDetails.getUsername());
+        model.addAttribute("successes", successes);
         return "mystatistic";
     }
 }
