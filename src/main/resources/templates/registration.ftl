@@ -14,19 +14,38 @@
         <div class="form-group row">
             <label class ="col-sm-2" for="username">${rc.getMessage("message.login")}</label>
             <div class = "col-sm-5">
-                <input type="text" class="form-control" name="username" placeholder="${rc.getMessage("message.enterlogin")}">
+                <input type="text"
+                       class="form-control ${(usernameError??)?string('is-invalid','')}"
+                       name="username"
+                       placeholder="${rc.getMessage("message.enterlogin")}">
+                <#if usernameError??>
+                    <div class = "invalid-feedback">
+                        ${usernameError}
+                    </div>
+                </#if>
             </div>
         </div>
         <div class = "form-group row">
             <label class ="col-sm-2"  for="password">${rc.getMessage("message.password")}</label>
             <div class = "col-sm-5">
-                <input type="password" class="form-control" name="password" placeholder="${rc.getMessage("message.password")}">
+                <input type="password" class="form-control ${(passwordError??)?string('is-invalid','')}" name="password"
+                       placeholder="${rc.getMessage("message.password")}">
+                <#if passwordError??>
+                    <div class = "invalid-feedback">
+                        ${passwordError}
+                    </div>
+                </#if>
             </div>
         </div>
         <div class = "form-group row">
-            <label class ="col-sm-2"  for="emal">${rc.getMessage("message.email")}</label>
+            <label class ="col-sm-2"  for="email">${rc.getMessage("message.email")}</label>
             <div class = "col-sm-5">
-                <input type="email" class="form-control" name="email" placeholder="${rc.getMessage("message.email")}">
+                <input type="email" class="form-control ${(emailError??)?string('is-invalid','')}" name="email" placeholder="${rc.getMessage("message.email")}">
+                <#if emailError??>
+                    <div class = "invalid-feedback">
+                        ${emailError}
+                    </div>
+                </#if>
             </div>
         </div>
         <input type="hidden" name="_csrf" value="${_csrf.token}" />

@@ -8,6 +8,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -19,14 +22,16 @@ public class User implements UserDetails {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
-
+    @Pattern(regexp = "[^_\\\\.&,#@!\\\\?\\\\(\\\\)\\-\\\\=\\\\+\\\\\\\\`\\\\~\\s][A-za-z]{1,5}[A-Za-z0-9_]{0,15}",
+            message = "{message.loginrules}")
     private String username;
+    @NotBlank(message = "{message.passwordnotempty}")
     private String password;
+    @Email(message = "{message.emailcorrect}")
+    @NotBlank(message = "{message.emailcorrect}")
     private String email;
     private boolean accountStatus;
 
-    /*@ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))*/
     @Enumerated(EnumType.STRING)
     private Role role;
 
