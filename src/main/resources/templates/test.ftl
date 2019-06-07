@@ -1,7 +1,7 @@
 <#import "parts/common.ftl" as c>
 <@c.page>
     <div class = "mb-2">
-        <h2 class = "text-center">Test result</h2>
+        <h2 class = "text-center">${rc.getMessage("message.testresult")}</h2>
     </div>
     <#list test?keys as key>
         <#if test[key]>

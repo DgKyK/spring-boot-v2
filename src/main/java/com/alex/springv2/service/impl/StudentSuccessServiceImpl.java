@@ -15,16 +15,18 @@ import java.util.List;
 import java.util.Map;
 @Service
 public class StudentSuccessServiceImpl implements StudentSuccessService {
-
-
-    @Autowired
-    TestRepository testRepository;
-
-    @Autowired
-    StudentSuccessRepository studentSuccessRepository;
+    private TestRepository testRepository;
+    private StudentSuccessRepository studentSuccessRepository;
+    private UserService userService;
 
     @Autowired
-    UserService userService;
+    public StudentSuccessServiceImpl(TestRepository testRepository,
+                                     StudentSuccessRepository studentSuccessRepository,
+                                     UserService userService) {
+        this.testRepository = testRepository;
+        this.userService = userService;
+        this.studentSuccessRepository = studentSuccessRepository;
+    }
 
     @Override
     public void saveCurrentResult(Map<String, Boolean> resultTest, String testInfo, String userName) {
@@ -53,6 +55,6 @@ public class StudentSuccessServiceImpl implements StudentSuccessService {
     @Override
     public List<StudentSuccess> findAllByUserName(String userName) {
         User currentUser = userService.findByUsername(userName);
-        return studentSuccessRepository.findAllByUserId(currentUser.getId());
+        return studentSuccessRepository.findAllByUser_Id(currentUser.getId());
     }
 }

@@ -13,12 +13,14 @@ import java.util.Optional;
 
 @Service
 public class TestServiceImpl implements TestService {
+    private TestRepository testRepository;
+    private QuestionRepository questionRepository;
 
     @Autowired
-    TestRepository testRepository;
-
-    @Autowired
-    QuestionRepository questionRepository;
+    public TestServiceImpl(TestRepository testRepository, QuestionRepository questionRepository) {
+        this.testRepository = testRepository;
+        this.questionRepository = questionRepository;
+    }
 
     @Override
     public List<Test> getAll() {
@@ -39,6 +41,6 @@ public class TestServiceImpl implements TestService {
     public List<Question> findAllByTestId(String chosenTest) {
         String[] splitted = chosenTest.split("\\s\\|\\s");
         long id = Long.parseLong(splitted[0]);
-        return questionRepository.findAllByTestId(id);
+        return questionRepository.findAllByTest_Id(id);
     }
 }

@@ -2,28 +2,40 @@ package com.alex.springv2.config;
 
 import com.alex.springv2.service.impl.UserCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Autowired
     private UserCheckService userCheckService;
+    private CustomLoginSuccessHandler successHandler;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    CustomLoginSuccessHandler successHandler;
+    public WebSecurityConfig(UserCheckService userCheckService, CustomLoginSuccessHandler successHandler,
+                             PasswordEncoder passwordEncoder) {
+        this.userCheckService = userCheckService;
+        this.successHandler = successHandler;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(5);
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/home","/registration").permitAll()
+                    .antMatchers("/", "/home","/registration","/login").permitAll()
                     .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
                     .antMatchers("/user/**").hasAnyAuthority( "USER")
                     .anyRequest().authenticated()
@@ -56,6 +68,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userCheckService)
-                .passwordEncoder(NoOpPasswordEncoder.getInstance());
+                .passwordEncoder(passwordEncoder);
     }
 }

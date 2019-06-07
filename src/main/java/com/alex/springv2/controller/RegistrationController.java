@@ -2,7 +2,6 @@ package com.alex.springv2.controller;
 
 
 import com.alex.springv2.domain.entity.User;
-import com.alex.springv2.service.RegistrationService;
 import com.alex.springv2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,12 +12,12 @@ import java.util.Map;
 
 @Controller
 public class RegistrationController {
-
-    @Autowired
     private UserService userService;
 
     @Autowired
-    private RegistrationService registrationService;
+    public RegistrationController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/registration")
     public String registration() {
@@ -27,15 +26,10 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addUser(User user, Map<String, Object> model) {
-        User userFromDb = userService.findByUsername(user.getUsername());
-
-        if(userFromDb != null) {
+        if(!userService.addUser(user)) {
             model.put("message", "User exist!");
             return "registration";
         }
-
-        registrationService.addNewUser(user);
-        userService.save(user);
 
         return "redirect:/login";
     }

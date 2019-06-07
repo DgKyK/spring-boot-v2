@@ -3,11 +3,11 @@
     <table class="table">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">User name</th>
-            <th scope="col">Tests</th>
-            <th scope="col">Passed</th>
-            <th scope="col">Failed</th>
-            <th scope="col">Activity</th>
+            <th scope="col">${rc.getMessage("message.username")}</th>
+            <th scope="col">${rc.getMessage("message.tests")}</th>
+            <th scope="col">${rc.getMessage("message.passed")}</th>
+            <th scope="col">${rc.getMessage("message.failed")}</th>
+            <th scope="col">${rc.getMessage("message.activity")}</th>
         </tr>
         </thead>
         <tbody>

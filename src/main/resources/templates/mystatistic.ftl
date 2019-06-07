@@ -3,12 +3,12 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Test name</th>
-            <th scope="col">Theme</th>
-            <th scope="col">Questions</th>
-            <th scope="col">Write</th>
-            <th scope="col">Wrong</th>
-            <th scope="col">Status</th>
+            <th scope="col">${rc.getMessage("message.testname")}</th>
+            <th scope="col">${rc.getMessage("message.theme")}</th>
+            <th scope="col">${rc.getMessage("message.questions")}</th>
+            <th scope="col">${rc.getMessage("message.write")}</th>
+            <th scope="col">${rc.getMessage("message.wrong")}</th>
+            <th scope="col">${rc.getMessage("message.status")}</th>
         </tr>
         </thead>
         <tbody>

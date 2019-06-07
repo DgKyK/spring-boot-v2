@@ -2,10 +2,10 @@
     <#include "parts/security.ftl">
 <@c.page>
     <div>
-        <h2> Hello ${name} !!!</h2>
+        <h2> ${rc.getMessage("message.hello")} ${name} !!!</h2>
     </div>
     <div >
-        <Strong>Choose the Test from catalog : </Strong>
+        <Strong>${rc.getMessage("message.choosetest")}</Strong>
     </div>
     <form action="/user/test" method="post" name="test">
     <div>
@@ -20,12 +20,12 @@
                     <i>${test.theme}</i>
                 </div>
             <#else>
-                <strong>NO TESTS</strong>
+                <strong>${rc.getMessage("message.notests")}</strong>
                 </option>
             </#list>
         </select>
     </div>
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
-        <button type="submit" class="btn btn-primary mt-2">Pass Test</button>
+        <button type="submit" class="btn btn-primary mt-2">${rc.getMessage("message.passtest")}</button>
     </form>
 </@c.page>
