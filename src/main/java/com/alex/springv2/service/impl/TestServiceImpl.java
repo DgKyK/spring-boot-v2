@@ -5,6 +5,8 @@ import com.alex.springv2.domain.entity.Test;
 import com.alex.springv2.repositories.QuestionRepository;
 import com.alex.springv2.repositories.TestRepository;
 import com.alex.springv2.service.TestService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,11 @@ import java.util.Optional;
 
 @Service
 public class TestServiceImpl implements TestService {
+
     private TestRepository testRepository;
     private QuestionRepository questionRepository;
+    private Logger logger = LogManager.getLogger(this.getClass());
+
 
     @Autowired
     public TestServiceImpl(TestRepository testRepository, QuestionRepository questionRepository) {
@@ -33,7 +38,9 @@ public class TestServiceImpl implements TestService {
         if (temp.isPresent()) {
             return temp.get();
         } else {
+            logger.warn("Test with id : " + id + " not found");
             throw new RuntimeException("Test with id : " + id + " not found");
+            //TODO find better way to resolve this case
         }
     }
 

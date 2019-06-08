@@ -9,6 +9,8 @@ import com.alex.springv2.repositories.TestRepository;
 import com.alex.springv2.service.StudentSuccessService;
 import com.alex.springv2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,8 +55,8 @@ public class StudentSuccessServiceImpl implements StudentSuccessService {
     }
 
     @Override
-    public List<StudentSuccess> findAllByUserName(String userName) {
+    public Page<StudentSuccess> findAllByUserName(String userName, Pageable pageable) {
         User currentUser = userService.findByUsername(userName);
-        return studentSuccessRepository.findAllByUser_Id(currentUser.getId());
+        return studentSuccessRepository.findAllByUser_Id(currentUser.getId(), pageable);
     }
 }

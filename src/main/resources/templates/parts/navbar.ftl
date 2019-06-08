@@ -1,7 +1,7 @@
 <#include "security.ftl">
 <#include "login.ftl">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">FTS</a>
+    <a class="navbar-brand" <#if isUser || isAdmin>href="#"<#else>href="/"</#if>>FTS</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>

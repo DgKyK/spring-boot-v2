@@ -8,6 +8,8 @@ import com.alex.springv2.domain.entity.User;
 import com.alex.springv2.service.StudentSuccessService;
 import com.alex.springv2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,12 +24,12 @@ public class GeneralStatisticMapper {
     @Autowired
     UserService userService;
 
-    public List<GeneralStatistic> getGeneralStatistic() {
+    public List<GeneralStatistic> getGeneralStatistic(Pageable pageable) {
         List<GeneralStatistic> resultStatistic = new ArrayList<>();
         GeneralStatistic temp;
         List<User> allUsers = userService.findAll();
         for(User user : allUsers) {
-            List<StudentSuccess> userSuccess = studentSuccessService.findAllByUserName(user.getUsername());
+            Page<StudentSuccess> userSuccess = studentSuccessService.findAllByUserName(user.getUsername(), pageable);
             int testsNumber = (int)userSuccess.stream().count();
             temp = GeneralStatistic.builder()
                     .tests(testsNumber)

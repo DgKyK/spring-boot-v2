@@ -1,4 +1,5 @@
 <#import "parts/common.ftl" as c>
+<#import "parts/paginator.ftl" as p>
 <@c.page>
     <table class="table">
         <thead>
@@ -12,7 +13,7 @@
         </tr>
         </thead>
         <tbody>
-        <#list successes as cc>
+        <#list page.content as cc>
             <tr>
                 <th scope="row">${cc.testName}</th>
                 <td>${cc.testTheme}</td>
@@ -24,4 +25,5 @@
         </#list>
         </tbody>
     </table>
+    <@p.paginator url page/>
 </@c.page>

@@ -9,6 +9,10 @@ import com.alex.springv2.service.impl.TestChecker;
 import com.alex.springv2.service.StudentSuccessService;
 import com.alex.springv2.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -25,11 +30,14 @@ import java.util.Map;
 @Controller
 public class UserController {
 
-    @Autowired
-    TestService testService;
+    private TestService testService;
+    private StudentSuccessService studentSuccessService;
 
     @Autowired
-    StudentSuccessService studentSuccessService;
+    public UserController(TestService testService, StudentSuccessService studentSuccessService) {
+        this.testService = testService;
+        this.studentSuccessService = studentSuccessService;
+    }
 
     @RequestMapping(value = "/user")
     public String userHome(Map<String, Object> model) {
@@ -52,11 +60,13 @@ public class UserController {
     }
 
     @RequestMapping("/mystatistic")
-    public String statistic(Model model) {
+    public String statistic(Model model,
+                            @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        List<StudentSuccess> successes = studentSuccessService.findAllByUserName(userDetails.getUsername());
-        model.addAttribute("successes", successes);
+        Page<StudentSuccess> page = studentSuccessService.findAllByUserName(userDetails.getUsername(), pageable);
+        model.addAttribute("page", page);
+        model.addAttribute("url", "/user/mystatistic");
         return "mystatistic";
     }
 }
