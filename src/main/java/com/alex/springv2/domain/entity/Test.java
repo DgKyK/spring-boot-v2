@@ -2,9 +2,8 @@ package com.alex.springv2.domain.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Test {
@@ -16,6 +15,15 @@ public class Test {
     private String theme;
     private int questNumber;
     private int needAnswerNumb;
+/*
+
+    @OneToMany(mappedBy = "test", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @Transient
+    private List<StudentSuccess> studentSuccesses;
+*/
+
+    @OneToMany(mappedBy = "test", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Question> questions;
 
     public long getId() {
         return id;

@@ -15,8 +15,8 @@
         <tbody>
         <#list page.content as cc>
             <tr>
-                <th scope="row">${cc.testName}</th>
-                <td>${cc.testTheme}</td>
+                <th scope="row">${cc.test.name}</th>
+                <td>${cc.test.theme}</td>
                 <td>${cc.questNumber}</td>
                 <td>${cc.writeAnswer}</td>
                 <td>${cc.wrongAnswer}</td>

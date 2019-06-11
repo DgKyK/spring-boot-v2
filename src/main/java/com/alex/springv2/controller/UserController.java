@@ -50,10 +50,12 @@ public class UserController {
     public String passTest(@RequestParam String chosenTest,  Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
         List<Question> questList = testService.findAllByTestId(chosenTest);
         Map<Integer, Answer> passedTest = AutoTestPasser.getPassedTest(questList.size());
         Map<String, Boolean> resultTest = TestChecker.getTestReview(questList,passedTest);
         studentSuccessService.saveCurrentResult(resultTest,chosenTest,userDetails.getUsername());
+
         model.addAttribute("test", resultTest);
         System.out.println(resultTest);
         return "test";
@@ -64,7 +66,9 @@ public class UserController {
                             @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
         Page<StudentSuccess> page = studentSuccessService.findAllByUserName(userDetails.getUsername(), pageable);
+
         model.addAttribute("page", page);
         model.addAttribute("url", "/user/mystatistic");
         return "mystatistic";

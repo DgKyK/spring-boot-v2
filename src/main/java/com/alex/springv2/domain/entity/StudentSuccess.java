@@ -1,10 +1,8 @@
 package com.alex.springv2.domain.entity;
 
 import com.alex.springv2.domain.TestStatus;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.*;
 
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -14,14 +12,13 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class StudentSuccess {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    private String testName;
-    private String testTheme;
     private int questNumber;
     private int writeAnswer;
     private int wrongAnswer;
@@ -34,6 +31,10 @@ public class StudentSuccess {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "test_id" ,nullable = false)
+    Test test;
+
 
     public long getId() {
         return id;
@@ -43,59 +44,4 @@ public class StudentSuccess {
         this.id = id;
     }
 
-    public String getTestName() {
-        return testName;
-    }
-
-    public void setTestName(String testName) {
-        this.testName = testName;
-    }
-
-    public String getTestTheme() {
-        return testTheme;
-    }
-
-    public void setTestTheme(String testTheme) {
-        this.testTheme = testTheme;
-    }
-
-    public int getQuestNumber() {
-        return questNumber;
-    }
-
-    public void setQuestNumber(int questNumber) {
-        this.questNumber = questNumber;
-    }
-
-    public int getWriteAnswer() {
-        return writeAnswer;
-    }
-
-    public void setWriteAnswer(int writeAnswer) {
-        this.writeAnswer = writeAnswer;
-    }
-
-    public int getWrongAnswer() {
-        return wrongAnswer;
-    }
-
-    public void setWrongAnswer(int wrongAnswer) {
-        this.wrongAnswer = wrongAnswer;
-    }
-
-    public TestStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(TestStatus status) {
-        this.status = status;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

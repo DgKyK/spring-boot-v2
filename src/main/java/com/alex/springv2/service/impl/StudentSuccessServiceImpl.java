@@ -44,8 +44,7 @@ public class StudentSuccessServiceImpl implements StudentSuccessService {
         User currentUser = userService.findByUsername(userName);
         StudentSuccess currentResult = StudentSuccess.builder()
                 .user(currentUser)
-                .testName(testFromBd.getName())
-                .testTheme(testFromBd.getTheme())
+                .test(testFromBd)
                 .questNumber(testFromBd.getQuestNumber())
                 .writeAnswer(writeAnswers)
                 .wrongAnswer(wrongAnswers)
