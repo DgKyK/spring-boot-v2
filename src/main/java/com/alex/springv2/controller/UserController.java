@@ -51,7 +51,7 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-        List<Question> questList = testService.findAllByTestId(chosenTest);
+        List<Question> questList = testService.findAllByChosenTest(chosenTest);
         Map<Integer, Answer> passedTest = AutoTestPasser.getPassedTest(questList.size());
         Map<String, Boolean> resultTest = TestChecker.getTestReview(questList,passedTest);
         studentSuccessService.saveCurrentResult(resultTest,chosenTest,userDetails.getUsername());

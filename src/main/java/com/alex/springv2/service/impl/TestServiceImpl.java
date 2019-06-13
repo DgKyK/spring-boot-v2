@@ -45,7 +45,7 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public List<Question> findAllByTestId(String chosenTest) {
+    public List<Question> findAllByChosenTest(String chosenTest) {
         String[] splitted = chosenTest.split("\\s\\|\\s");
         long id = Long.parseLong(splitted[0]);
         return questionRepository.findAllByTest_Id(id);

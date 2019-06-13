@@ -33,15 +33,6 @@ public class StudentSuccess {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "test_id" ,nullable = false)
-    Test test;
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
+    private Test test;
 
 }
