@@ -40,7 +40,6 @@ public class TestServiceImpl implements TestService {
         } else {
             logger.warn("Test with id : " + id + " not found");
             throw new RuntimeException("Test with id : " + id + " not found");
-            //TODO find better way to resolve this case
         }
     }
 

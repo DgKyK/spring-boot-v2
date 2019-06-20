@@ -18,19 +18,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserCheckService userCheckService;
-
     @Autowired
     private CustomLoginSuccessHandler successHandler;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
-    /*@Autowired
-    public WebSecurityConfig(UserCheckService userCheckService, CustomLoginSuccessHandler successHandler,
-                             PasswordEncoder passwordEncoder) {
-        this.userCheckService = userCheckService;
-        this.successHandler = successHandler;
-        this.passwordEncoder = passwordEncoder;
-    }*/
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -65,9 +57,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userCheckService)
                 .passwordEncoder(passwordEncoder);
     }
-
-    /*@Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.sessionManagement().maximumSessions(1)
-    }*/
 }

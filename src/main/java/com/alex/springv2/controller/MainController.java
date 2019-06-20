@@ -23,11 +23,6 @@ public class MainController {
         return "login";
     }
 
-    @GetMapping(value = "/hello")
-    public String hello() {
-        return "hello";
-    }
-
     @RequestMapping(value = {"/", "/home"})
     public String startPage() {
         return "home";
