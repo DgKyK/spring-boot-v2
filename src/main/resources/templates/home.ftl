@@ -7,5 +7,3 @@
     <h3 class="text-center">${rc.getMessage("message.continue")}</h3>
     <h3 class="text-center"><a href="${springMacroRequestContext.getContextPath()}/login">${rc.getMessage("message.signin")}</a> ${rc.getMessage("message.or")} <a href="${springMacroRequestContext.getContextPath()}/registration">${rc.getMessage("message.register")}</a></h3>
 </@c.page>
-<#--
--->

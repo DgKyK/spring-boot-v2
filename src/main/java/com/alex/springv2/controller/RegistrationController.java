@@ -44,10 +44,9 @@ public class RegistrationController {
             model.addAttribute("usernameError", "User exist!");
             return "registration";
         }
-        logger.info("User has been added" + user);
+        logger.info("User has been added : " + user);
 
         return "redirect:/login";
     }
 }
-/*
-<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />*/
+

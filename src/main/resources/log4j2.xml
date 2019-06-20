@@ -29,7 +29,7 @@
             <AppenderRef ref="Console" />
         </Root>
 
-        <!-- LOG "com.baeldung*" at TRACE level -->
+        <!-- LOG at TRACE level -->
         <Logger name="com.alex.springv2" level="debug">
             <AppenderRef ref="Console" />
             <AppenderRef ref="RollingFile" />
